@@ -1,15 +1,19 @@
 package ciberdoctor;
 
 import javax.persistence.Column;
+import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Table;
+
+@Entity
+@Table(name = "tb_doctores")
 
 public class Doctor {
 
-	 public Doctor(int id_doctor, String nom_doctor, String especialidad_doctor) {
+	 public Doctor(String nom_doctor, String especialidad_doctor) {
 		super();
-		this.id_doctor = id_doctor;
 		this.nom_doctor = nom_doctor;
 		this.especialidad_doctor = especialidad_doctor;
 	}
