@@ -24,7 +24,7 @@ public class Main {
          
          //Creación de los 3 primeros registros
 		 //Comentarlo despues de ejecutarlo por primera vez
-		  
+		  /*
          em.getTransaction().begin();
 
          Doctor doc1 = new Doctor("Juan", "Otorrino");
@@ -35,7 +35,7 @@ public class Main {
          em.persist(doc2);
          em.persist(doc3);
          em.getTransaction().commit();
-
+*/
          
          EjecutarPrograma();
 		
@@ -82,8 +82,7 @@ public class Main {
 		nombreDoctor = s.nextLine();
 		
 		int doctorId = obtenerDoctorId(nombreDoctor);
-		//Cita citas = (Cita) em.createQuery("from Citas where id_doctor="+doctorId).getResultList().get(0);
-		
+	
 		@SuppressWarnings("unchecked")
 		List<Cita> citasDelDoctor = (List<Cita>) em.createQuery("from Cita where id_doctor="+doctorId).getResultList();
 
@@ -134,14 +133,14 @@ public class Main {
 			System.out.println("Ingrese nombre del doctor");
 			nombreDoctor = s.nextLine();
 			try {
-				crearCita(numCita, fechaCita, nombrePaciente, nombreDoctor);
+				System.out.println(obtenerDoctorId(nombreDoctor));
 				break;
 			} catch (Exception e) {
 				// TODO Auto-generated catch block
 				System.out.println("No existe tal Doctor ó hay múltiples doctores con ese nombre [La creacion de los 3 doctores solo debe hacerse una vez]");
 			}
 		}
-		
+		crearCita(numCita, fechaCita, nombrePaciente, nombreDoctor);
 		
 		System.out.println("Cita registrada, regresando a menú principal en");
 		for(int i=3;i>0;i--) {
