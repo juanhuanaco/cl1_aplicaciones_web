@@ -5,13 +5,13 @@
              http://xmlns.jcp.org/xml/ns/persistence/persistence_2_1.xsd"
              version="2.1">
  
-        <persistence-unit name="ciberdoctores">
+        <persistence-unit name="CL1_HuanacoQuispe">
 
                 <provider>org.hibernate.ejb.HibernatePersistence</provider>
 
                 <properties>
 
-                        <property name="hibernate.connection.url" value="jdbc:mysql://localhost:3306/ciberdoctores" />
+                        <property name="hibernate.connection.url" value="jdbc:mysql://localhost:3306/CL1_HuanacoQuispe" />
 
                         <property name="hibernate.connection.driver_class" value="com.mysql.cj.jdbc.Driver" />
 
