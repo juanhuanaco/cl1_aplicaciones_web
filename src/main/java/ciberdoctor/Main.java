@@ -5,6 +5,7 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 import java.util.Scanner;
+import java.util.logging.Level;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
@@ -17,7 +18,7 @@ public class Main {
 	
 	public static void main(String[] args) throws InterruptedException {
 		// TODO Auto-generated method stub
-		
+		 java.util.logging.Logger.getLogger("org.hibernate").setLevel(Level.OFF);
 		 EntityManagerFactory emf = Persistence.createEntityManagerFactory("CL1_HuanacoQuispe");
          em = emf.createEntityManager();
          
@@ -128,11 +129,18 @@ public class Main {
 		System.out.println("Ingrese nombre del paciente");
 		nombrePaciente = s.nextLine();
 		
-		System.out.println("Ingrese nombre del doctor");
-		nombreDoctor = s.nextLine();
 		
-		
-		crearCita(numCita, fechaCita, nombrePaciente, nombreDoctor);
+		while(true) {
+			System.out.println("Ingrese nombre del doctor");
+			nombreDoctor = s.nextLine();
+			try {
+				crearCita(numCita, fechaCita, nombrePaciente, nombreDoctor);
+				break;
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				System.out.println("No existe tal Doctor ó hay múltiples doctores con ese nombre [La creacion de los 3 doctores solo debe hacerse una vez]");
+			}
+		}
 		
 		
 		System.out.println("Cita registrada, regresando a menú principal en");
@@ -148,6 +156,7 @@ public class Main {
 
         em.getTransaction().begin();
 
+        
         int doctorId = obtenerDoctorId(nom_doctor);
         Cita cita = new Cita(num_cita, fecha_cita, nom_paciente_cita, doctorId);
 
